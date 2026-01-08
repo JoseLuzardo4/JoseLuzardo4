@@ -1,4 +1,3 @@
-"""
 # Hi there, I'm José Luzardo 👋
 
 ### Backend Engineer | High-Performance Systems | Optimization
