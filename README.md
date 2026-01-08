@@ -88,19 +88,7 @@ The legacy infrastructure (Ubuntu 24.04) shipped with OpenSSL 3.1, which depreca
 * **Full-Stack Delivery:** Developed the web platform (Laravel/Blade) and the companion Mobile App using **Flutter**, designing RESTful APIs for real-time data synchronization.
 * **Access Control:** Designed granular Role-Based Access Control (RBAC) for hierarchical user management (Super Admin, Admin, Operator).
 
----
-
-## 📈 Github Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=joseluzardo&show_icons=true&theme=dark&hide_border=true&bg_color=00000000" alt="Jose's Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joseluzardo&layout=compact&theme=dark&hide_border=true&bg_color=00000000" alt="Top Langs" />
-</p>
-
----
-
 ### 📬 Connect
 * **Email:** [jose.luzardo.tech@gmail.com](mailto:jose.luzardo.tech@gmail.com)
 * **LinkedIn:** [linkedin.com/in/joseluzardo](https://linkedin.com/in/joseluzardo)
 * **Location:** Ecuador (UTC-5) - Available for Remote Roles worldwide.
-"""
