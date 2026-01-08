@@ -88,6 +88,6 @@ The legacy infrastructure (Ubuntu 24.04) shipped with OpenSSL 3.1, which depreca
 * **Access Control:** Designed granular Role-Based Access Control (RBAC) for hierarchical user management (Super Admin, Admin, Operator).
 
 ### 📬 Connect
-* **Email:** [jose.luzardo.tech@gmail.com](mailto:jose.luzardo.dev@gmail.com)
-* **LinkedIn:** [linkedin.com/in/joseluzardo](https://linkedin.com/in/jose-luzardo)
+* **Email:** [jose.luzardo.dev@gmail.com](mailto:jose.luzardo.dev@gmail.com)
+* **LinkedIn:** [linkedin.com/in/jose-luzardo](https://linkedin.com/in/jose-luzardo)
 * **Location:** Ecuador (UTC-5) - Available for Remote Roles worldwide.
