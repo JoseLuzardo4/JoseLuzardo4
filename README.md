@@ -1,93 +1,94 @@
 # Hi there, I'm José Luzardo 👋
 
-### Backend Engineer | High-Performance Systems | Optimization
+### Junior Software Engineer | Full-Stack | Python · FastAPI · React · PostgreSQL
 
-I am a **Backend Engineer** specialized in solving NP-hard logistical problems and building high-throughput financial systems. My focus is on **latency reduction**, **mathematical optimization**, and **distributed architecture**.
+I'm a Mechatronics Engineer transitioning into Software Engineering, focused on building production-grade systems that solve real business problems. My background bridges hardware systems thinking with modern software architecture — a combination that gives me an unusual ability to reason about constraints, performance, and systems design from first principles.
 
-Currently architecting logistics solutions at **Tía S.A.** and building compliance engines for **Fintech**.
+Currently building a compliance platform for Fintech and completing CS50x (Harvard) to formalize my Computer Science foundations.
+
+Open to remote roles worldwide (UTC-5, full overlap with US East Coast).
 
 ---
 
-## 🛠️ The Arsenal (Tech Stack)
+## 🛠️ Tech Stack
 
-| Core & Performance | Cloud & DevOps | Data & Messaging |
+| Backend | Frontend | Database & Infra |
 | :--- | :--- | :--- |
-| ![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white) | ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white) | ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) |
-| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white) | ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white) |
-| ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white) | ![Kubernetes](https://img.shields.io/badge/Kubernetes-326ce5?style=for-the-badge&logo=kubernetes&logoColor=white) | ![Celery](https://img.shields.io/badge/Celery-37814A?style=for-the-badge&logo=celery&logoColor=white) |
-| ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white) | ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white) | ![gRPC](https://img.shields.io/badge/gRPC-244c5a?style=for-the-badge&logo=grpc&logoColor=white) |
-| ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white) | ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) | ![Hetzner](https://img.shields.io/badge/Hetzner-D50C2D?style=for-the-badge&logo=hetzner&logoColor=white) |
+| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) |
+| ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white) | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) | ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white) |
+| ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white) | | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) |
 
 ---
 
-## 🔒 Selected Work & Architecture Case Studies
+## 🔒 Selected Projects
 
-> *⚠️ **Note:** Most of my work involves proprietary algorithms and corporate infrastructure protected by **NDAs**. While the source code is private, the architectural patterns and outcomes are documented below to demonstrate engineering capacity.*
+> ⚠️ Source code for client projects is private due to NDAs. Architecture and technical decisions are documented below.
 
-### 🚛 Project: Enterprise Logistics Optimization (SDVRP)
-**Context:** Optimizing daily route dispatch for a retail giant with a **heterogeneous fleet** and complex site-access constraints across 200+ vehicles daily. The logistics unit is the "Caddie" (Roll Container).
+---
+
+### 💸 Veritics — AML Compliance SaaS (Fintech, Active Development)
+
+**Context:** End-to-end Anti-Money Laundering screening platform for a financial services client. Verifies transactions in real time against international sanctions lists (OFAC, Interpol, UN).
+
+**Technical Decisions:**
+
+- **Multi-tenant Architecture:** Designed strict tenant isolation using PostgreSQL Row-Level Security (RLS) policies, ensuring zero data bleed between clients at the database layer — not just at the application layer.
+- **Security Hardening:** Implemented parameterized queries throughout to eliminate SQL injection vectors. Authentication built on JWT with stateless session management.
+- **Backend:** FastAPI chosen for its async-first architecture and automatic OpenAPI documentation, which simplifies compliance audit requirements.
+- **Frontend:** React SPA with role-based UI rendering — Auditors and Operators see different views of the same data based on their permissions.
+
+**Stack:** Python · FastAPI · PostgreSQL · React · Docker · JWT
+
+---
+
+### 🚛 Logistics Route Optimization — Tía S.A. (Past Work)
+
+**Context:** Delivery route optimization for a large retail chain operating a heterogeneous fleet of 200+ vehicles daily across multiple store locations with site-access restrictions.
 
 **The Engineering Challenge:**
-The routing problem was not a simple VRP, but a **Split Delivery VRP (SDVRP)** with Time Windows. Legacy manual routing failed to optimize fleet mixing due to complex constraints:
-1.  **Heterogeneous Fleet Capacities:** The fleet consists of Small (1-15 caddies), Medium (12-20 caddies), and Large (21-25 caddies) trucks.
-2.  **Site Access Restrictions:** Certain store locations physically cannot receive Large trucks, forcing the usage of smaller, less efficient vehicles.
-3.  **Split Delivery Logic:** If a store demands 34 caddies but only accepts Medium trucks, the system must intelligently split the order (e.g., 2 Medium trucks) rather than failing.
-4.  **Cost Function Complexity:** Each truck type has a specific fixed fee ($55 Small, $70 Medium, $90 Large). The solver needed to evaluate if sending *2x Medium ($140)* was cheaper or more viable than *1x Large + 1x Small ($145)* based on total distance and fleet availability.
+The problem was a Split Delivery Vehicle Routing Problem (SDVRP) with Time Windows — a class of NP-hard combinatorial optimization. Manual routing failed to account for fleet mixing tradeoffs (e.g., whether sending 2x Medium trucks at $140 was more cost-effective than 1x Large + 1x Small at $145 given distance and store constraints).
 
-**The Solution:**
-* **Mathematical Modeling:** Engineered a custom **Constraint Programming model** using **Google OR-Tools** (C++ bindings). I implemented a multi-dimensional cost function that minimizes Total Cost of Ownership (TCO) by balancing distance traveled against fixed fleet costs and time window penalties.
-* **Event-Driven Architecture:** Decoupled the CPU-intensive solver from the API using a "Fire-and-Forget" pattern (FastAPI -> Redis -> Celery) to eliminate HTTP 504 Timeouts caused by long calculation windows (30s+).
+**Technical Decisions:**
 
-```mermaid
-graph LR
-    A[Client/Dispatcher] -- HTTP POST (Orders) --> B(FastAPI Gateway)
-    B -- Task Payload --> C{Redis Broker}
-    B -- 202 Accepted --> A
-    C -- Async Consumption --> D[Celery Workers]
-    D -- C++ Bindings --> E[OR-Tools Solver]
-    E -- Optimized Routes (JSON) --> F[(PostgreSQL)]
-    D -- Webhook --> A
-```
+- **Solver:** Google OR-Tools Constraint Programming model with a multi-dimensional cost function balancing distance, fixed fleet costs, and time window penalties.
+- **Async Architecture:** Decoupled the CPU-intensive solver from the API using FastAPI → Redis → Celery to prevent HTTP timeouts on calculations exceeding 30 seconds.
+- **Deployment:** Containerized solver workers with Docker for consistent cold-start performance.
 
 **Business Impact:**
-* 📉 **15% Reduction** in operational transport costs (~$30k monthly savings) via optimized fleet mixing and smarter split deliveries.
-* 🚀 **70% Reduction** in solver cold-start times through containerization (Docker).
-* ✅ **Zero Downtime** deployments using Docker & CI/CD pipelines.
+- 📉 ~$3,000/month reduction in operational transport costs through optimized fleet mixing.
+- 🚀 Significant reduction in solver cold-start times through containerization.
+
+**Stack:** Python · FastAPI · Google OR-Tools · Redis · Celery · Docker · PostgreSQL
 
 ---
 
-### 💸 Project: High-Frequency AML Screening Engine (Fintech)
-**Context:** Real-time Anti-Money Laundering (AML) verification against international sanctions lists (OFAC, Interpol, UNO).
+### 🧾 FacPlus — Electronic Invoicing SaaS (Production)
+
+**Context:** Multi-tenant SaaS platform for electronic invoicing, built during an internship and currently in production serving ~300 client accounts.
 
 **The Engineering Challenge:**
-The initial Python-based fuzzy matching implementation suffered from high latency (>400ms) during real-time transaction flows. Additionally, relying on managed cloud services (AWS) was becoming cost-prohibitive at scale. Data ingestion was also fragile due to fragmented government sources.
+The local tax authority (SRI) required digital signatures using legacy .p12 certificates with cryptographic algorithms deprecated in modern OpenSSL 3.x. The platform needed to handle this without downgrading the OS security posture.
 
-**The Solution:**
-* **Polyglot Migration:** Rewrote the core matching engine in **Go (Golang)**, utilizing concurrent goroutines for parallel list scanning and in-memory struct optimization to reduce Garbage Collection overhead.
-* **Bare Metal Infrastructure:** Migrated from Managed Cloud to self-hosted **Hetzner Dedicated Servers**, manually configuring Linux networking and Docker orchestration. This allowed for raw CPU access without the "noisy neighbor" problem of shared VPS.
-* **Security Middleware:** Implemented a custom RBAC (Role-Based Access Control) middleware to enforce strict data isolation between Auditors and Operators.
-* **Resilient Data Pipeline:** Built a custom scraping engine capable of automated captcha solving to reliably ingest data from unstable government portals.
+**Technical Decisions:**
 
-**Business Impact:**
-* ⚡ **10x Latency Improvement** (Sub-50ms p99 response time).
-* 💰 **80% Cost Reduction** in infrastructure by moving to Bare Metal.
-* 🐳 **Binary Optimization:** Production artifact reduced from >500MB (Python) to <20MB (Go Scratch image).
+- **Cryptographic Microservice:** Isolated the legacy decryption logic into a dedicated Python microservice using low-level cryptography libraries, acting as a bridge between modern infrastructure and legacy certificate formats.
+- **Multi-tenant Isolation:** Implemented tenant scoping at the database query level to ensure strict data isolation between client accounts.
+- **Access Control:** Role-based system with hierarchical permissions (Super Admin → Admin → Operator).
+
+**Stack:** Python · PHP/Laravel · PostgreSQL · Flutter (mobile) · Docker
 
 ---
 
-### 🧾 Project: SaaS Invoicing Platform (FacPlus)
-**Context:** Building a multi-tenant SaaS for electronic invoicing from zero to production (MVP).
+## 📚 Currently Learning
 
-**The Engineering Challenge:**
-The legacy infrastructure (Ubuntu 24.04) shipped with OpenSSL 3.1, which deprecated specific algorithms required to decrypt legacy .p12 digital signatures used by the local tax authority (SRI). The PHP/Laravel core could not handle the decryption natively without downgrading the entire OS security posture.
+- **CS50x (Harvard/edX):** Formalizing Computer Science fundamentals — algorithms, data structures, memory management, and systems programming in C and Python. Completed: Weeks 1–6 including Tideman (graph cycle detection), Speller (hash table implementation), and Filter (image convolution algorithms).
+- **JavaScript & React:** Building toward full-stack proficiency in modern web development.
+- **AWS Cloud Practitioner (CLF-C02):** Targeting certification Q3 2026.
 
-**The Solution:**
-* **Microservices Bridge:** Architected an isolated **Python microservice** specifically to handle the cryptographic operations (using `cryptography` libraries), creating a bridge between the modern infrastructure and legacy file formats.
-* **SaaS Business Logic:** Engineered complex subscription lifecycle management, handling plan upgrades (prorated billing), downgrades, and automated expiration logic for thousands of tenant accounts.
-* **Full-Stack Delivery:** Developed the web platform (Laravel/Blade) and the companion Mobile App using **Flutter**, designing RESTful APIs for real-time data synchronization.
-* **Access Control:** Designed granular Role-Based Access Control (RBAC) for hierarchical user management (Super Admin, Admin, Operator).
+---
 
-### 📬 Connect
-* **Email:** [jose.luzardo.dev@gmail.com](mailto:jose.luzardo.dev@gmail.com)
-* **LinkedIn:** [linkedin.com/in/jose-luzardo](https://linkedin.com/in/jose-luzardo)
-* **Location:** Ecuador (UTC-5) - Available for Remote Roles worldwide.
+## 📬 Connect
+
+- **Email:** jose.luzardo.dev@gmail.com
+- **LinkedIn:** [linkedin.com/in/jose-luzardo](https://linkedin.com/in/jose-luzardo)
+- **Location:** Ecuador (UTC-5) — Available for full-stack and backend remote roles worldwide.
