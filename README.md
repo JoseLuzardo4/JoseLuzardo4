@@ -2,21 +2,30 @@
 
 ### Junior Software Engineer | Full-Stack | Python · FastAPI · React · PostgreSQL
 
-I'm a Mechatronics Engineer transitioning into Software Engineering, focused on building production-grade systems that solve real business problems. My background bridges hardware systems thinking with modern software architecture — a combination that gives me an unusual ability to reason about constraints, performance, and systems design from first principles.
+Mechatronics Engineer transitioning into Software Engineering. My background bridges systems thinking with modern software architecture — an unusual combination that lets me reason about constraints, performance, and system design from first principles.
 
 Currently building a compliance platform for Fintech and completing CS50x (Harvard) to formalize my Computer Science foundations.
 
-Open to remote roles worldwide (UTC-5, full overlap with US East Coast).
+📍 Ecuador (UTC-5) — Full overlap with US East Coast. Open to remote roles worldwide.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Backend | Frontend | Database & Infra |
-| :--- | :--- | :--- |
-| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) |
-| ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white) | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) | ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white) |
-| ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white) | | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) |
+### Backend
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+
+### Frontend
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+
+### Database & Infrastructure
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 ---
 
@@ -28,14 +37,35 @@ Open to remote roles worldwide (UTC-5, full overlap with US East Coast).
 
 ### 💸 Veritics — AML Compliance SaaS (Fintech, Active Development)
 
-**Context:** End-to-end Anti-Money Laundering screening platform for a financial services client. Verifies transactions in real time against international sanctions lists (OFAC, Interpol, UN).
+Real-time Anti-Money Laundering screening platform verifying transactions against international sanctions lists (OFAC, Interpol, UN).
 
-**Technical Decisions:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     VERITICS ARCHITECTURE                    │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│   React SPA          FastAPI Backend        PostgreSQL       │
+│  ┌─────────┐        ┌─────────────┐        ┌──────────┐    │
+│  │Auditor  │        │             │        │          │    │
+│  │  View   │◄──────►│  REST API   │◄──────►│  RLS     │    │
+│  ├─────────┤  JWT   │             │        │Policies  │    │
+│  │Operator │        │  Auth       │        │          │    │
+│  │  View   │        │  Middleware │        │Multi     │    │
+│  └─────────┘        │             │        │Tenant    │    │
+│                     │  AML Engine │        │Isolation │    │
+│                     └─────────────┘        └──────────┘    │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+```
 
-- **Multi-tenant Architecture:** Designed strict tenant isolation using PostgreSQL Row-Level Security (RLS) policies, ensuring zero data bleed between clients at the database layer — not just at the application layer.
-- **Security Hardening:** Implemented parameterized queries throughout to eliminate SQL injection vectors. Authentication built on JWT with stateless session management.
-- **Backend:** FastAPI chosen for its async-first architecture and automatic OpenAPI documentation, which simplifies compliance audit requirements.
-- **Frontend:** React SPA with role-based UI rendering — Auditors and Operators see different views of the same data based on their permissions.
+**Key Technical Decisions:**
+
+| Decision | Implementation | Why |
+|----------|---------------|-----|
+| Tenant Isolation | PostgreSQL Row-Level Security (RLS) | Enforces isolation at DB layer, not just application layer |
+| Authentication | JWT stateless sessions | Scales horizontally without shared session state |
+| SQL Injection | Parameterized queries throughout | Eliminates injection vectors at the driver level |
+| Role Separation | RBAC at API + UI level | Auditors and Operators see different views of the same data |
 
 **Stack:** Python · FastAPI · PostgreSQL · React · Docker · JWT
 
@@ -43,20 +73,39 @@ Open to remote roles worldwide (UTC-5, full overlap with US East Coast).
 
 ### 🚛 Logistics Route Optimization — Tía S.A. (Past Work)
 
-**Context:** Delivery route optimization for a large retail chain operating a heterogeneous fleet of 200+ vehicles daily across multiple store locations with site-access restrictions.
+Delivery route optimization for a large Ecuadorian retail chain operating a heterogeneous fleet across 200+ daily deliveries with complex site-access constraints.
 
-**The Engineering Challenge:**
-The problem was a Split Delivery Vehicle Routing Problem (SDVRP) with Time Windows — a class of NP-hard combinatorial optimization. Manual routing failed to account for fleet mixing tradeoffs (e.g., whether sending 2x Medium trucks at $140 was more cost-effective than 1x Large + 1x Small at $145 given distance and store constraints).
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  ASYNC SOLVER ARCHITECTURE                   │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  Dispatcher         FastAPI          Redis         Celery    │
+│  ┌────────┐        ┌───────┐        ┌─────┐      ┌──────┐  │
+│  │        │ POST   │       │ Task   │     │Async │      │  │
+│  │ Client │───────►│  API  │───────►│Queue│─────►│Worker│  │
+│  │        │        │       │        │     │      │      │  │
+│  │        │◄───────│202    │        └─────┘      │OR-   │  │
+│  │        │Accepted│       │                     │Tools │  │
+│  │        │        └───────┘                     │Solver│  │
+│  │        │                                      └──┬───┘  │
+│  │        │◄─────────────────Webhook + Routes───────┘      │
+│  └────────┘                                                 │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+```
 
-**Technical Decisions:**
+**The Problem:** Split Delivery VRP (SDVRP) with Time Windows — an NP-hard combinatorial optimization problem. The solver needed to decide whether sending 2x Medium trucks ($140) was more cost-effective than 1x Large + 1x Small ($145) factoring in distance, fleet availability, and store access restrictions.
 
-- **Solver:** Google OR-Tools Constraint Programming model with a multi-dimensional cost function balancing distance, fixed fleet costs, and time window penalties.
-- **Async Architecture:** Decoupled the CPU-intensive solver from the API using FastAPI → Redis → Celery to prevent HTTP timeouts on calculations exceeding 30 seconds.
-- **Deployment:** Containerized solver workers with Docker for consistent cold-start performance.
+**Key Technical Decisions:**
 
-**Business Impact:**
-- 📉 ~$3,000/month reduction in operational transport costs through optimized fleet mixing.
-- 🚀 Significant reduction in solver cold-start times through containerization.
+| Decision | Implementation | Why |
+|----------|---------------|-----|
+| Solver | Google OR-Tools Constraint Programming | Handles multi-dimensional cost functions natively |
+| Async Decoupling | FastAPI → Redis → Celery | Prevents HTTP 504 timeouts on 30s+ calculations |
+| Deployment | Docker containerization | Consistent cold-start performance across environments |
+
+**Business Impact:** ~$3,000/month reduction in operational transport costs through optimized fleet mixing.
 
 **Stack:** Python · FastAPI · Google OR-Tools · Redis · Celery · Docker · PostgreSQL
 
@@ -64,26 +113,83 @@ The problem was a Split Delivery Vehicle Routing Problem (SDVRP) with Time Windo
 
 ### 🧾 FacPlus — Electronic Invoicing SaaS (Production)
 
-**Context:** Multi-tenant SaaS platform for electronic invoicing, built during an internship and currently in production serving ~300 client accounts.
+Multi-tenant SaaS for electronic invoicing, built during internship and currently serving ~300 client accounts in production.
 
-**The Engineering Challenge:**
-The local tax authority (SRI) required digital signatures using legacy .p12 certificates with cryptographic algorithms deprecated in modern OpenSSL 3.x. The platform needed to handle this without downgrading the OS security posture.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                   FACPLUS ARCHITECTURE                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  Web (Laravel)    Python Microservice      Flutter Mobile    │
+│  ┌────────────┐   ┌────────────────┐      ┌─────────────┐  │
+│  │            │   │                │      │             │  │
+│  │  Laravel   │──►│  Crypto Bridge │      │  Flutter    │  │
+│  │  Core      │   │                │      │  Mobile App │  │
+│  │            │   │  .p12 Legacy   │      │             │  │
+│  │  Multi     │   │  Decryption    │      │  REST API   │  │
+│  │  Tenant    │   │  (OpenSSL 1.x) │      │  Sync       │  │
+│  │  RBAC      │   │                │      │             │  │
+│  └─────┬──────┘   └────────────────┘      └─────────────┘  │
+│        │                                                     │
+│        ▼                                                     │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │              PostgreSQL (Tenant-Scoped)               │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+```
 
-**Technical Decisions:**
+**The Engineering Challenge:** Ubuntu 24.04 ships with OpenSSL 3.1, which deprecated algorithms required by the tax authority's legacy .p12 certificates. Downgrading the OS security posture was not an option.
 
-- **Cryptographic Microservice:** Isolated the legacy decryption logic into a dedicated Python microservice using low-level cryptography libraries, acting as a bridge between modern infrastructure and legacy certificate formats.
-- **Multi-tenant Isolation:** Implemented tenant scoping at the database query level to ensure strict data isolation between client accounts.
-- **Access Control:** Role-based system with hierarchical permissions (Super Admin → Admin → Operator).
+**Key Technical Decisions:**
 
-**Stack:** Python · PHP/Laravel · PostgreSQL · Flutter (mobile) · Docker
+| Decision | Implementation | Why |
+|----------|---------------|-----|
+| Crypto Isolation | Dedicated Python microservice | Sandboxes legacy OpenSSL dependencies away from core |
+| Tenant Isolation | Database-level query scoping | Zero data bleed between client accounts |
+| Access Control | Hierarchical RBAC | Super Admin → Admin → Operator permission inheritance |
+
+**Stack:** PHP · Laravel · Python · PostgreSQL · Flutter · Docker
 
 ---
 
 ## 📚 Currently Learning
 
-- **CS50x (Harvard/edX):** Formalizing Computer Science fundamentals — algorithms, data structures, memory management, and systems programming in C and Python. Completed: Weeks 1–6 including Tideman (graph cycle detection), Speller (hash table implementation), and Filter (image convolution algorithms).
-- **JavaScript & React:** Building toward full-stack proficiency in modern web development.
-- **AWS Cloud Practitioner (CLF-C02):** Targeting certification Q3 2026.
+```
+CS50x Progress (Harvard/edX)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Week 1  ████████████████████  C, Memory, Algorithms
+Week 2  ████████████████████  Arrays, Strings, Cryptography
+Week 3  ████████████████████  Algorithms, Sorting, Graph Theory
+Week 4  ████████████████████  Memory, Pointers, File I/O
+Week 5  ████████████████████  Data Structures, Hash Tables
+Week 6  ████████████████████  Python
+Week 7  ░░░░░░░░░░░░░░░░░░░░  SQL (In Progress)
+Week 8  ░░░░░░░░░░░░░░░░░░░░  HTML, CSS, JavaScript
+Week 9  ░░░░░░░░░░░░░░░░░░░░  Flask
+Week 10 ░░░░░░░░░░░░░░░░░░░░  Final Project
+
+Notable completions: Tideman (graph cycle detection via DFS),
+Speller (hash table from scratch with valgrind-clean memory),
+Filter (image convolution with Sobel operator)
+```
+
+**Target Certifications:**
+- AWS Certified Cloud Practitioner (CLF-C02) — Q3 2026
+
+---
+
+## 🗺️ Roadmap
+
+Technologies I'm actively working toward and will add to my stack as I build real proficiency:
+
+| Technology | Status | Target |
+|------------|--------|--------|
+| Next.js | Planned | Q4 2026 |
+| React Native | Planned | Q1 2027 |
+| AWS (beyond CCP) | Planned | 2027 |
+| Golang | Planned | 2027 |
 
 ---
 
