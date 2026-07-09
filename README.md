@@ -53,18 +53,18 @@ A full-stack "Buy Now, Pay Later" platform built as my final project for Harvard
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     BNPL ARCHITECTURE                        │
+│                     BNPL ARCHITECTURE                       │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│   React SPA           Go REST API          SQLite/Postgres   │
-│  ┌─────────┐        ┌─────────────┐        ┌──────────┐    │
-│  │Client   │        │ Scheduler   │        │  ACID    │    │
-│  │Dashboard│◄──────►│ Service     │◄──────►│  Ledger  │    │
-│  ├─────────┤  JWT   │             │        │          │    │
-│  │Admin    │        │ Mutex +     │        │ Integer  │    │
-│  │Console  │        │ Row Locking │        │ Cents    │    │
-│  └─────────┘        └─────────────┘        └──────────┘    │
-│                                                              │
+│                                                             │
+│   React SPA           Go REST API          SQLite/Postgres  │
+│  ┌─────────┐        ┌─────────────┐        ┌──────────┐     │
+│  │Client   │        │ Scheduler   │        │  ACID    │     │
+│  │Dashboard│◄──────►│ Service     │◄──────►│  Ledger  │     │
+│  ├─────────┤  JWT   │             │        │          │     │
+│  │Admin    │        │ Mutex +     │        │ Integer  │     │
+│  │Console  │        │ Row Locking │        │ Cents    │     │
+│  └─────────┘        └─────────────┘        └──────────┘     │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -89,23 +89,23 @@ Regulatory AML/CFT compliance SaaS for Ecuador's non-financial obligated entitie
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     VERITICS ARCHITECTURE                    │
+│                     VERITICS ARCHITECTURE                   │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│   React SPA          FastAPI Backend        PostgreSQL       │
-│  ┌─────────┐        ┌─────────────┐        ┌──────────┐    │
-│  │Admin    │        │ AHP Risk    │        │  RLS     │    │
-│  │Operator │◄──────►│ Scoring     │◄──────►│Policies  │    │
-│  │Auditor  │  JWT   │ Engine      │        │          │    │
-│  │  Views  │        │ (3 Pillars) │        │Multi     │    │
-│  └─────────┘        │ RBAC (4-tier)│       │Tenant    │    │
-│                     └─────────────┘        └──────────┘    │
-│                             │                                │
-│                     ┌───────┴────────┐                       │
-│                     │ Background      │                      │
-│                     │ Scraping Engine │                      │
-│                     │ (18+ sources)   │                      │
-│                     └────────────────┘                       │
+│                                                             │
+│   React SPA          FastAPI Backend        PostgreSQL      │
+│  ┌─────────┐        ┌─────────────┐        ┌──────────┐     │
+│  │Admin    │        │ AHP Risk    │        │  RLS     │     │
+│  │Operator │◄──────►│ Scoring     │◄──────►│Policies  │     │
+│  │Auditor  │  JWT   │ Engine      │        │          │     │
+│  │  Views  │        │ (3 Pillars) │        │Multi     │     │
+│  └─────────┘        │ RBAC (4-tier)│       │Tenant    │     │
+│                     └─────────────┘        └──────────┘     │
+│                             │                               │
+│                     ┌───────┴────────┐                      │
+│                     │ Background      │                     │
+│                     │ Scraping Engine │                     │
+│                     │ (18+ sources)   │                     │
+│                     └────────────────┘                      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -131,21 +131,21 @@ Delivery route optimization for a large Ecuadorian retail chain operating a hete
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                  ASYNC SOLVER ARCHITECTURE                   │
+│                  ASYNC SOLVER ARCHITECTURE                  │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  Dispatcher         FastAPI          Redis         Celery    │
-│  ┌────────┐        ┌───────┐        ┌─────┐      ┌──────┐  │
-│  │        │ POST   │       │ Task   │     │Async │      │  │
-│  │ Client │───────►│  API  │───────►│Queue│─────►│Worker│  │
-│  │        │        │       │        │     │      │      │  │
-│  │        │◄───────│202    │        └─────┘      │OR-   │  │
-│  │        │Accepted│       │                     │Tools │  │
-│  │        │        └───────┘                     │Solver│  │
-│  │        │                                      └──┬───┘  │
-│  │        │◄─────────────────Webhook + Routes───────┘      │
+│                                                             │
+│  Dispatcher         FastAPI          Redis         Celery   │
+│  ┌────────┐        ┌───────┐        ┌─────┐      ┌──────┐   │
+│  │        │ POST   │       │ Task   │     │Async │      │   │
+│  │ Client │───────►│  API  │───────►│Queue│─────►│Worker│   │ 
+│  │        │        │       │        │     │      │      │   │
+│  │        │◄───────│202    │        └─────┘      │OR-   │   │
+│  │        │Accepted│       │                     │Tools │   │
+│  │        │        └───────┘                     │Solver│   │
+│  │        │                                      └──┬───┘   │
+│  │        │◄─────────────────Webhook + Routes───────┘       │
 │  └────────┘                                                 │
-│                                                              │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -172,25 +172,25 @@ Multi-tenant SaaS for electronic invoicing, built end to end from an internship 
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                   FACPLUS ARCHITECTURE                       │
+│                   FACPLUS ARCHITECTURE                      │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  Web (Laravel)    Python Microservice      Flutter Mobile    │
-│  ┌────────────┐   ┌────────────────┐      ┌─────────────┐  │
-│  │            │   │                │      │             │  │
-│  │  Laravel   │──►│  Crypto Bridge │      │  Flutter    │  │
-│  │  Core      │   │                │      │  Mobile App │  │
-│  │            │   │  .p12 Legacy   │      │             │  │
-│  │  Multi     │   │  Decryption    │      │  REST API   │  │
-│  │  Tenant    │   │  (OpenSSL 1.x) │      │  Sync       │  │
-│  │  RBAC      │   │                │      │             │  │
-│  └─────┬──────┘   └────────────────┘      └─────────────┘  │
-│        │                                                     │
-│        ▼                                                     │
+│                                                             │
+│  Web (Laravel)    Python Microservice      Flutter Mobile   │
+│  ┌────────────┐   ┌────────────────┐      ┌─────────────┐   │
+│  │            │   │                │      │             │   │
+│  │  Laravel   │──►│  Crypto Bridge │      │  Flutter    │   │
+│  │  Core      │   │                │      │  Mobile App │   │
+│  │            │   │  .p12 Legacy   │      │             │   │
+│  │  Multi     │   │  Decryption    │      │  REST API   │   │
+│  │  Tenant    │   │  (OpenSSL 1.x) │      │  Sync       │   │
+│  │  RBAC      │   │                │      │             │   │
+│  └─────┬──────┘   └────────────────┘      └─────────────┘   │
+│        │                                                    │
+│        ▼                                                    │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │              PostgreSQL (Tenant-Scoped)               │   │
+│  │              PostgreSQL (Tenant-Scoped)              │   │
 │  └──────────────────────────────────────────────────────┘   │
-│                                                              │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
